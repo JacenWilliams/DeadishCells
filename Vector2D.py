@@ -1,7 +1,7 @@
 import math
 
 
-class Vector2D():
+class Vector2D:
     def __init__(self, x, y):
         self.x = x
         self.y = y
@@ -19,5 +19,6 @@ class Vector2D():
         self.y = self.y * n
 
     def distance(self, other):
+        # print(other.x, self.x, other.y, self.y)
         return math.sqrt(((other.x - self.x) ** 2) + ((other.y - self.y) ** 2))
 

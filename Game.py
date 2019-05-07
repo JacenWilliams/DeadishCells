@@ -34,7 +34,8 @@ class Game:
         self.lifespans = []
         self.counter = 0
         self.max_queue_list = []
-        self.elite_count = 2
+        self.elite_count = 20
+        self.scores = []
 
     def init_objects(self):
         i = 0
@@ -126,6 +127,7 @@ class Game:
         for i, cell_tuple in enumerate(self.dead_cells[:]):
             cells_to_del.append(cell_tuple[1])
             self.lifespans.append(self.counter)
+            self.scores.append(cell_tuple[0].score)
             if isinstance(cell_tuple[0], Cell.Cell):
                 self.max_queue_list.append(cell_tuple[0])
 
@@ -161,14 +163,22 @@ class Game:
             self.vectors.append([food.position.x, food.position.y])
 
     def reinitialize(self):
+        self.lifespans = []
+        self.counter = 0
+
         for cell in self.cells:
             self.max_queue_list.append(cell)
 
-        print(self.max_queue_list)
         self.max_queue_list.sort(key=lambda x: x.score, reverse=True)
 
         elite = self.max_queue_list[:5]
-        self.cells = elite
+
+        for cell in elite:
+            cell.health = 1
+            cell.score = 0
+            cell.breed_cooldown = 50
+            self.cells.append(cell)
+
         self.food = []
 
         i = len(self.cells)
@@ -185,6 +195,20 @@ class Game:
             f = Food.Food(np.random.random() * self.width, np.random.random() * self.height)
             self.food.append(f)
             i += 1
+
+    def get_lifespans(self):
+        for cell in self.cells:
+            self.lifespans.append(self.counter)
+
+        return self.lifespans
+
+    def get_scores(self):
+        for cell in self.cells:
+            self.scores.append(cell.score)
+
+        return self.scores
+
+
 
 
 

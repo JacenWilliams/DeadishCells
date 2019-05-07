@@ -15,7 +15,7 @@ class Cell:
         self.acceleration = v.Vector2D(0, 0)
         self.friction = f
         self.brain = Brain.Brain(input_size, hidden_size, output_size, mutation_rate, crossover_rate)
-        self.breed_cooldown = 100
+        self.breed_cooldown = 50
 
     def update(self, input_data):
 

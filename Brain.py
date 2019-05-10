@@ -1,7 +1,6 @@
 import Vector2D as v
 import DNA
 import math
-import numpy as np
 
 
 class Brain:
@@ -12,6 +11,7 @@ class Brain:
         hidden_values = input_data.dot(self.dna.input_hidden_weights)
         hidden_activated = self.activation(hidden_values)
         output_values = hidden_activated.dot(self.dna.hidden_output_weights)
+        # vector normalized with tanh function, probably a better way to do this
         output_vector = v.Vector2D(math.tanh(output_values[0]), math.tanh(output_values[1]))
         return output_vector
 
@@ -21,9 +21,3 @@ class Brain:
             input_data[i] = math.tanh(input_data[i])
 
         return input_data
-
-# test method
-# brain = Brain(10, 20, 2, .001, .95)
-# for i in range(50):
-#     vec = brain.think(np.random.randn(1,10))
-#     print(vec.x, vec.y)

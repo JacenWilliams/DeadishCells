@@ -1,5 +1,4 @@
 import Vector2D as v
-import pygame as pg
 
 
 class Food():

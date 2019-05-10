@@ -1,8 +1,6 @@
 import numpy as np
 import Cell
 import Food
-import math
-import heapq
 from sklearn.neighbors import KDTree
 
 

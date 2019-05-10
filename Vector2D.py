@@ -19,6 +19,5 @@ class Vector2D:
         self.y = self.y * n
 
     def distance(self, other):
-        # print(other.x, self.x, other.y, self.y)
         return math.sqrt(((other.x - self.x) ** 2) + ((other.y - self.y) ** 2))
 
